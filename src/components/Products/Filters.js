@@ -59,7 +59,7 @@ export const Filters = () => {
         </div>
 
         <div className="price-group">
-          <p>{price}</p>
+          <p>price</p>
           <label>
             <input
               type="radio"
@@ -75,7 +75,7 @@ export const Filters = () => {
               type="radio"
               name="price"
               value="0"
-              checked={price === "0"}
+              checked={price === 0}
               onChange={updateFilters}
             />
             $0 - $300
@@ -85,7 +85,7 @@ export const Filters = () => {
               type="radio"
               name="price"
               value="300"
-              checked={price === "300"}
+              checked={price === 300}
               onChange={updateFilters}
             />
             $300 - $650
@@ -95,7 +95,7 @@ export const Filters = () => {
               type="radio"
               name="price"
               value="650"
-              checked={price === "650"}
+              checked={price === 650}
               onChange={updateFilters}
             />
             Over $650

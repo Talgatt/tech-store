@@ -7,8 +7,8 @@ export default function PageProducts() {
   const { sorted, page, changePage } = React.useContext(ProductContext);
 
   //console.log([page]);
-  console.log("testing");
-  console.log([page]);
+  //console.log("testing");
+  //console.log([page]);
 
   if (sorted[page]) {
     return (

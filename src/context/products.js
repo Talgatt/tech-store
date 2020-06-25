@@ -44,6 +44,7 @@ export default function ProductProvider({ children }) {
     let newProducts = [...products].sort((a, b) => a.Price - b.Price);
     const { search, category, shipping, price } = filters;
     // logic
+
     if (category !== "all") {
       newProducts = newProducts.filter((item) => item.category === category);
     }
@@ -55,14 +56,20 @@ export default function ProductProvider({ children }) {
 
     if (search !== "") {
       newProducts = newProducts.filter((item) => {
-        let title = item.title.toLowerCase().trim();
+        let title = item.Title.toLowerCase().trim();
         return title.startsWith(search) ? item : null;
       });
     }
 
-    if (price != "all") {
+    if (price !== "all") {
       newProducts = newProducts.filter((item) => {
-        if (price === 0) return item.price < 300;
+        if (price === 0) {
+          return item.Price < 300;
+        } else if (price === 300) {
+          return item.Price > 300 && item.Price < 650;
+        } else {
+          return item.Price > 650;
+        }
       });
     }
     setPage(0);
@@ -78,16 +85,22 @@ export default function ProductProvider({ children }) {
     const filter = e.target.name;
     const value = e.target.value;
     let filterValue;
-    console.log(type, filter, value);
+    console.log("update filters");
+    //console.log(e);
+    //console.log(value);
+    //console.log(type, filter, value);
     if (type === "checkbox") {
       filterValue = e.target.checked;
     } else if (type === "radio") {
       value === "all" ? (filterValue = value) : (filterValue = parseInt(value));
+      console.log(value);
     } else {
       filterValue = value;
     }
 
     setFilters({ ...filters, [filter]: filterValue });
+
+    console.log(filters);
   };
 
   return (
